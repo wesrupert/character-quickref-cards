@@ -1,0 +1,33 @@
+// Global themes
+
+$font-script: Brush Script, cursive;
+$font-serif: Candra, Garamond, serif;
+$font-sans: Geneva, Calibri, sans-serif;
+
+$font-xl: 32pt;
+$font-l: 22pt;
+$font-m: 11pt;
+$font-s: 8pt;
+
+$gap-l: 16px;
+$gap-m: 8px;
+$gap-s: 4px;
+
+$card-bg-color: tan;
+$card-fg-color: black;
+$border-color: saddlebrown;
+
+$border-radius: $gap-l;
+$border-card: 2px solid $border-color;
+
+@mixin rounded-card {
+  aspect-ratio: 16/8;
+
+  font-family: $font-script;
+
+  background-color: $card-bg-color;
+  color: $card-fg-color;
+  border: $border-card {
+    radius: $border-radius;
+  }
+}

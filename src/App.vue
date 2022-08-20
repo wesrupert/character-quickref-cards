@@ -1,19 +1,32 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <div class="cards">
+    <CharacterCard
+      v-for="character in characters"
+      :key="character.name"
+      :character="character"
+    />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({ name: "App" });
+<script setup lang="ts">
+import { ref } from "vue";
+import CharacterCard, { Character } from "./components/CharacterCard.vue";
+
+const characters = ref<Character[]>();
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "@/styles/global";
+@import "@/styles/theme";
+
+.cards {
+  width: min(100%, 800px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
 }
 </style>
