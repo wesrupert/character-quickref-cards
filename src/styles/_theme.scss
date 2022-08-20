@@ -17,8 +17,10 @@ $card-bg-color: tan;
 $card-fg-color: black;
 $border-color: saddlebrown;
 
-$border-radius: $gap-l;
-$border-card: 2px solid $border-color;
+$border-width: 2px;
+$border-radius-m: $gap-l;
+$border-radius-s: $border-radius-m - $border-width;
+$border-card: $border-width solid $border-color;
 
 @mixin rounded-card {
   font-family: $font-sans;
@@ -26,7 +28,7 @@ $border-card: 2px solid $border-color;
   background-color: $card-bg-color;
   color: $card-fg-color;
   border: $border-card {
-    radius: $border-radius;
+    radius: $border-radius-m;
   }
 }
 

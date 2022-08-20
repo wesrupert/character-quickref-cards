@@ -1,3 +1,5 @@
+@import "./theme";
+
 html {
   box-sizing: border-box;
 }
@@ -9,10 +11,9 @@ html {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }

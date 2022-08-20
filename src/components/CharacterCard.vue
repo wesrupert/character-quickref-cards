@@ -3,6 +3,7 @@
     <div
       v-if="props.character.portrait"
       class="portrait"
+      :class="{ fullscreen: props.character.useFullscreenPortrait }"
       :style="{
         'background-image': `url(${props.character.portrait})`,
       }"
@@ -53,6 +54,7 @@ import StatusBox from "./StatusBox.vue";
 export interface Character {
   name: string;
   portrait?: string;
+  useFullscreenPortrait?: boolean;
 
   physiology?: string;
   role?: string;
@@ -108,7 +110,7 @@ p {
   font-size: $font-s;
   font-weight: normal;
   text-align: left;
-  margin: $gap-m 0;
+  margin: $gap-s 0;
 }
 
 .portrait {
@@ -124,8 +126,15 @@ p {
   background-position: center;
   background-repeat: no-repeat;
 
+  border-top-left-radius: $border-radius-s;
+  border-bottom-left-radius: $border-radius-s;
   border-right: $border-card {
     style: dotted;
+  }
+
+  &.fullscreen {
+    background-size: cover;
+    padding: 0;
   }
 }
 
