@@ -29,12 +29,18 @@
       <div v-if="props.character.quote" class="quote">
         {{ props.character.quote }}
       </div>
-      <div class="status">Hello status bar!</div>
+      <div class="status">
+        <StatusBox title="health" :default="props.character.health" />
+        <StatusBox title="amity" :default="props.character.relationship" />
+        <StatusBox title="emotion" :default="props.character.emotion" />
+        <StatusBox title="behavior" :default="props.character.behavior" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import StatusBox from "./StatusBox.vue";
 export interface Character {
   name: string;
   portrait?: string;
@@ -45,8 +51,10 @@ export interface Character {
   personality?: { header?: string; text: string }[];
   quote?: string;
 
-  status?: string;
+  health?: string;
   relationship?: string;
+  emotion?: string;
+  behavior?: string;
 }
 
 const props = defineProps<{ character: Character }>();
@@ -57,6 +65,7 @@ const props = defineProps<{ character: Character }>();
 
 .character-card {
   @include rounded-card;
+  aspect-ratio: 16/8;
 
   display: flex;
   align-items: stretch;
@@ -140,5 +149,13 @@ p {
   font-size: $font-m;
   font-style: italic;
   text-align: left;
+  padding-bottom: $gap-m;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: $gap-s;
 }
 </style>
