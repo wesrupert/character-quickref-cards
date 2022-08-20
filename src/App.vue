@@ -28,5 +28,11 @@ const characters = ref<Character[]>(characterData);
   display: flex;
   flex-direction: column;
   gap: $gap-m;
+
+  @media print {
+    & > *:nth-child(2n) {
+      margin-bottom: 240px;
+    }
+  }
 }
 </style>
