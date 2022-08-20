@@ -21,8 +21,6 @@ $border-radius: $gap-l;
 $border-card: 2px solid $border-color;
 
 @mixin rounded-card {
-  aspect-ratio: 16/8;
-
   font-family: $font-script;
 
   background-color: $card-bg-color;
@@ -30,4 +28,11 @@ $border-card: 2px solid $border-color;
   border: $border-card {
     radius: $border-radius;
   }
+}
+
+@mixin chromeless-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
 }

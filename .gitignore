@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 # Customized content
 /public/characters
+/src/assets/characters.json

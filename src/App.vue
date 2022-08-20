@@ -12,8 +12,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CharacterCard, { Character } from "./components/CharacterCard.vue";
-
-const characters = ref<Character[]>();
+import characterData from "@/assets/characters.json";
+console.debug(characterData);
+const characters = ref<Character[]>(characterData);
 </script>
 
 <style lang="scss">
