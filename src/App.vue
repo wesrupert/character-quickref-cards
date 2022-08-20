@@ -1,5 +1,4 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <div class="cards">
     <CharacterCard
       v-for="character in characters"

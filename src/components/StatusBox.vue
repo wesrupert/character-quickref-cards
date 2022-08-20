@@ -1,15 +1,19 @@
 <template>
-  <div class="status-box">
+  <div class="status-box" :class="{ wide: props.wide }">
     <div class="title">
       {{ props.title }}
     </div>
     <input type="text" />
-    <input class="default-value" type="text" :value="props.default" />
+    <input class="default-value" type="text" :value="props.options" />
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ title: string; default?: string }>();
+const props = defineProps<{
+  title: string;
+  options?: string;
+  wide?: boolean;
+}>();
 </script>
 
 <style scoped lang="scss">
@@ -26,6 +30,10 @@ const props = defineProps<{ title: string; default?: string }>();
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  &.wide {
+    aspect-ratio: 2/1;
+  }
 }
 
 .title {
@@ -43,7 +51,7 @@ const props = defineProps<{ title: string; default?: string }>();
 
 input {
   @include chromeless-input;
-  max-width: 100%;
+  width: 100%;
   font-size: $font-l;
   font-family: $font-sans;
 
@@ -51,12 +59,10 @@ input {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
 
-    padding-right: $gap-m;
     padding-bottom: $gap-s;
-
-    font-size: $font-s;
+    font-size: $font-xs;
+    font-style: italic;
   }
 }
 </style>

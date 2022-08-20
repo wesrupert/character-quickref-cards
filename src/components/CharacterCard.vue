@@ -7,6 +7,9 @@
         'background-image': `url(${props.character.portrait})`,
       }"
     />
+    <div v-else class="portrait quote">
+      <span v-if="props.character.quote">“{{ props.character.quote }}”</span>
+    </div>
     <div class="details">
       <div class="title">
         <h1 class="name">{{ props.character.name }}</h1>
@@ -20,20 +23,26 @@
           </h3>
         </div>
       </div>
-      <div class="blurbs">
-        <p v-for="block in props.character.personality" :key="block.text">
-          <span v-if="block.header" class="header">{{ block.header }}</span>
-          <span>{{ block.text }}</span>
-        </p>
+      <div class="blurbs-wrapper">
+        <div class="blurbs">
+          <p v-for="block in props.character.personality" :key="block.text">
+            <span v-if="block.header" class="header">{{ block.header }}</span>
+            <span>{{ block.text }}</span>
+          </p>
+        </div>
       </div>
-      <div v-if="props.character.quote" class="quote">
-        {{ props.character.quote }}
+      <div
+        v-if="props.character.portrait && props.character.quote"
+        class="quote"
+      >
+        “{{ props.character.quote }}”
       </div>
-      <div class="status">
-        <StatusBox title="health" :default="props.character.health" />
-        <StatusBox title="amity" :default="props.character.relationship" />
-        <StatusBox title="emotion" :default="props.character.emotion" />
-        <StatusBox title="behavior" :default="props.character.behavior" />
+      <div v-if="props.character.status" class="status">
+        <StatusBox
+          v-for="status in props.character.status"
+          :key="status.title"
+          v-bind="status"
+        />
       </div>
     </div>
   </div>
@@ -51,8 +60,9 @@ export interface Character {
   personality?: { header?: string; text: string }[];
   quote?: string;
 
+  status?: { title: string; options?: string; wide?: boolean }[];
   health?: string;
-  relationship?: string;
+  amity?: string;
   emotion?: string;
   behavior?: string;
 }
@@ -65,6 +75,7 @@ const props = defineProps<{ character: Character }>();
 
 .character-card {
   @include rounded-card;
+  @include paper-corners;
   aspect-ratio: 16/8;
 
   display: flex;
@@ -72,33 +83,41 @@ const props = defineProps<{ character: Character }>();
   justify-content: stretch;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   font-family: $font-script;
   font-weight: normal;
-  font-size: $font-l;
   margin: 0;
 }
 
+h1 {
+  font-size: $font-l;
+}
+
 h2 {
+  font-weight: bold;
   font-size: $font-m;
-  margin: 0;
 }
 
 h3 {
   font-size: $font-s;
-  font-weight: normal;
-  margin: 0;
 }
 
 p {
   font-size: $font-s;
   font-weight: normal;
   text-align: left;
+  margin: $gap-m 0;
 }
 
 .portrait {
   padding: $gap-m;
   flex: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background-origin: content-box;
   background-size: contain;
@@ -122,7 +141,7 @@ p {
 
 .title {
   display: flex;
-  align-items: top;
+  align-items: start;
   justify-content: space-between;
 }
 
@@ -136,16 +155,34 @@ p {
   text-align: right;
 }
 
-.blurbs {
+.blurbs-wrapper {
+  position: relative;
   flex: 1;
 }
 
+.blurbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  overflow-y: scroll;
+}
+
 .header {
+  font-family: $font-serif;
   font-size: $font-m;
   font-weight: bold;
 }
 
 .quote {
+  font-family: $font-script;
   font-size: $font-m;
   font-style: italic;
   text-align: left;
@@ -155,7 +192,7 @@ p {
 .status {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  gap: $gap-s;
+  justify-content: start;
+  gap: $gap-l;
 }
 </style>

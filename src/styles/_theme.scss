@@ -1,13 +1,13 @@
 // Global themes
 
-$font-script: Brush Script, cursive;
+$font-script: Harrington, fantasy, Brush Script MT, cursive;
 $font-serif: Candra, Garamond, serif;
 $font-sans: Geneva, Calibri, sans-serif;
 
-$font-xl: 32pt;
-$font-l: 22pt;
-$font-m: 11pt;
-$font-s: 8pt;
+$font-l: 32px;
+$font-m: 18px;
+$font-s: 14px;
+$font-xs: 12px;
 
 $gap-l: 16px;
 $gap-m: 8px;
@@ -21,7 +21,7 @@ $border-radius: $gap-l;
 $border-card: 2px solid $border-color;
 
 @mixin rounded-card {
-  font-family: $font-script;
+  font-family: $font-sans;
 
   background-color: $card-bg-color;
   color: $card-fg-color;
@@ -35,4 +35,11 @@ $border-card: 2px solid $border-color;
   outline: none;
   background: transparent;
   text-align: center;
+}
+
+@mixin paper-corners {
+  background-image: url("@/assets/paper-tl.png"), url("@/assets/paper-tr.png"), url("@/assets/paper-bl.png"), url("@/assets/paper-br.png");
+  background-position: top left, top right, bottom left, bottom right;
+  background-size: 35%;
+  background-repeat: no-repeat;
 }
