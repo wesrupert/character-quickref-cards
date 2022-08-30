@@ -4,10 +4,10 @@ $font-script: Harrington, fantasy, Brush Script MT, cursive;
 $font-serif: Candra, Garamond, serif;
 $font-sans: Geneva, Calibri, sans-serif;
 
-$font-l: 32px;
-$font-m: 18px;
-$font-s: 14px;
-$font-xs: 12px;
+$font-l: 2em;
+$font-m: 1.125em;
+$font-s: 1em;
+$font-xs: 0.875em;
 
 $gap-l: 16px;
 $gap-m: 8px;
@@ -28,7 +28,7 @@ $border-card: $border-width solid $border-color;
   background-color: $card-bg-color;
   color: $card-fg-color;
   border: $border-card {
-    radius: $border-radius-m;
+    radius: min(25%, $border-radius-m);
   }
 }
 

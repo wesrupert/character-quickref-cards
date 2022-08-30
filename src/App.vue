@@ -22,8 +22,9 @@ const characters = ref<Character[]>(characterData);
 
 .cards {
   width: min(100%, 800px);
+
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;

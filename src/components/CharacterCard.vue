@@ -1,5 +1,11 @@
 <template>
-  <div class="character-card">
+  <div
+    ref="root"
+    class="character-card"
+    :style="{
+      'font-size': width < 800 ? `${(16 * width) / 800}px` : '16px',
+    }"
+  >
     <div
       v-if="props.character.portrait"
       class="portrait"
@@ -50,7 +56,10 @@
 </template>
 
 <script setup lang="ts">
+import { useElementLayout } from "@/composables/resize";
+import { ref } from "vue";
 import StatusBox from "./StatusBox.vue";
+
 export interface Character {
   name: string;
   portrait?: string;
@@ -63,13 +72,13 @@ export interface Character {
   quote?: string;
 
   status?: { title: string; options?: string; wide?: boolean }[];
-  health?: string;
-  amity?: string;
-  emotion?: string;
-  behavior?: string;
 }
 
+const root = ref<HTMLElement | null>(null);
+
 const props = defineProps<{ character: Character }>();
+
+const { width } = useElementLayout(root);
 </script>
 
 <style scoped lang="scss">
@@ -110,7 +119,9 @@ p {
   font-size: $font-s;
   font-weight: normal;
   text-align: left;
-  margin: $gap-s 0;
+  margin: 0 {
+    bottom: $gap-s;
+  }
 }
 
 .portrait {
@@ -173,15 +184,15 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
+  bottom: $gap-s;
   right: 0;
 
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
+  justify-content: space-evenly;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .header {
