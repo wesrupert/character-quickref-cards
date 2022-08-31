@@ -13,10 +13,10 @@
         :character="sampleCharacter"
       />
     </div>
-    <div class="inputs">
+    <div class="inputs accent">
       <label
         >Resize me!
-        <input type="range" min="66" max="95" v-model="width" />
+        <input type="range" min="66" max="100" v-model="width" />
       </label>
       <div class="checkboxes">
         Show the:
@@ -51,7 +51,7 @@
       </label>
     </div>
     <div class="button-bar">
-      <button @click="onGetStartedClick">Get started</button>
+      <button @click="onGetStartedClick"><h1>Get started</h1></button>
     </div>
   </div>
 </template>
@@ -156,13 +156,8 @@ p {
   margin: 0;
 }
 
-button {
-  @include rounded-card;
-  border-radius: 4 * $border-width;
-}
-
 label {
-  @include horizontal-flex;
+  display: flex;
 }
 
 .sample-card {
@@ -176,15 +171,7 @@ label {
 }
 
 .checkboxes {
-  @include horizontal-flex;
-
-  & > label {
-    padding: 0 $gap-s;
-    border: $border-card {
-      style: dotted;
-      radius: $border-radius-m;
-    }
-  }
+  @include horizontal-flex($cross-axis: stretch);
 }
 
 .button-bar {

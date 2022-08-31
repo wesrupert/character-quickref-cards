@@ -84,6 +84,15 @@ const { width } = useElementLayout(root);
 <style scoped lang="scss">
 @import "@/styles";
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $card-fg-color;
+}
+
 .character-card {
   @include rounded-card;
   @include paper-corners;
@@ -92,36 +101,6 @@ const { width } = useElementLayout(root);
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-}
-
-h1,
-h2,
-h3 {
-  font-family: $font-script;
-  font-weight: normal;
-  margin: 0;
-}
-
-h1 {
-  font-size: $font-l;
-}
-
-h2 {
-  font-weight: bold;
-  font-size: $font-m;
-}
-
-h3 {
-  font-size: $font-s;
-}
-
-p {
-  font-size: $font-s;
-  font-weight: normal;
-  text-align: left;
-  margin: 0 {
-    bottom: $gap-s;
-  }
 }
 
 .portrait {

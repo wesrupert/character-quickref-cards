@@ -40,7 +40,8 @@ $border-card: $border-width solid $border-color;
 }
 
 @mixin paper-corners {
-  background-image: url("@/assets/paper-tl.png"), url("@/assets/paper-tr.png"), url("@/assets/paper-bl.png"), url("@/assets/paper-br.png");
+  background-image: url("@/assets/paper-tl.png"), url("@/assets/paper-tr.png"),
+    url("@/assets/paper-bl.png"), url("@/assets/paper-br.png");
   background-position: top left, top right, bottom left, bottom right;
   background-size: 35%;
   background-repeat: no-repeat;
