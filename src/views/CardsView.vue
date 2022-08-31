@@ -21,13 +21,6 @@ const characters = ref<Character[]>(characterData);
 <style lang="scss">
 @import "@/styles";
 
-.cards-view {
-  width: min(100%, 800px);
-
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .cards {
   display: flex;
   flex-direction: column;

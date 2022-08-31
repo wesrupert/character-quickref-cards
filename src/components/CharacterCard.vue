@@ -32,7 +32,7 @@
       </div>
       <div class="blurbs-wrapper">
         <div class="blurbs">
-          <p v-for="block in props.character.personality" :key="block.text">
+          <p v-for="block in props.character.notes" :key="block.text">
             <span v-if="block.header" class="header">{{ block.header }}</span>
             <span>{{ block.text }}</span>
           </p>
@@ -68,7 +68,7 @@ export interface Character {
   subtitle?: string;
   title?: string;
 
-  personality?: { header?: string; text: string }[];
+  notes?: { header?: string; text: string }[];
   quote?: string;
 
   status?: { title: string; options?: string; wide?: boolean }[];

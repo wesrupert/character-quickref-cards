@@ -54,8 +54,19 @@ nav {
 }
 
 .main {
-  padding: $gap-l;
+  @include vertical-flex;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: $gap-l {
+    top: $gap-s;
+  }
+
+  & > * {
+    max-width: min(100%, 900px);
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 </style>
