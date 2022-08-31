@@ -1,0 +1,39 @@
+@mixin rounded-card {
+  font-family: $font-sans;
+
+  background-color: $card-bg-color;
+  color: $card-fg-color;
+  border: $border-card {
+    radius: min(25%, $border-radius-m);
+  }
+}
+
+@mixin chromeless-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+}
+
+@mixin paper-corners {
+  background-image: url("@/assets/paper-tl.png"), url("@/assets/paper-tr.png"), url("@/assets/paper-bl.png"), url("@/assets/paper-br.png");
+  background-position: top left, top right, bottom left, bottom right;
+  background-size: 35%;
+  background-repeat: no-repeat;
+}
+
+@mixin horizontal-flex($main-axis: center, $cross-axis: center, $gap: $gap-m) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $main-axis;
+  align-items: $cross-axis;
+  gap: $gap;
+}
+
+@mixin vertical-flex($main-axis: center, $cross-axis: center, $gap: $gap-m) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $main-axis;
+  align-items: $cross-axis;
+  gap: $gap;
+}

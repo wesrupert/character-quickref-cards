@@ -21,12 +21,12 @@
       <div class="title">
         <h1 class="name">{{ props.character.name }}</h1>
         <div
-          v-if="props.character.physiology || props.character.role"
+          v-if="props.character.subtitle || props.character.title"
           class="subtitle"
         >
-          <h2 v-if="props.character.role">{{ props.character.role }}</h2>
-          <h3 v-if="props.character.physiology">
-            {{ props.character.physiology }}
+          <h2 v-if="props.character.title">{{ props.character.title }}</h2>
+          <h3 v-if="props.character.subtitle">
+            {{ props.character.subtitle }}
           </h3>
         </div>
       </div>
@@ -65,8 +65,8 @@ export interface Character {
   portrait?: string;
   useFullscreenPortrait?: boolean;
 
-  physiology?: string;
-  role?: string;
+  subtitle?: string;
+  title?: string;
 
   personality?: { header?: string; text: string }[];
   quote?: string;
@@ -82,7 +82,7 @@ const { width } = useElementLayout(root);
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/theme";
+@import "@/styles";
 
 .character-card {
   @include rounded-card;
@@ -178,19 +178,20 @@ p {
 .blurbs-wrapper {
   position: relative;
   flex: 1;
+  margin-bottom: $gap-s;
 }
 
 .blurbs {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: $gap-s;
+  bottom: 0;
   right: 0;
 
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-evenly;
+  justify-content: start;
 
   overflow-y: auto;
 }

@@ -17,7 +17,7 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/theme";
+@import "@/styles";
 
 .status-box {
   position: relative;
