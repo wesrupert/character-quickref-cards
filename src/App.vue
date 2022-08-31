@@ -1,39 +1,61 @@
 <template>
-  <div class="cards">
-    <CharacterCard
-      v-for="character in characters"
-      :key="character.name"
-      :character="character"
-    />
+  <div class="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/cards">My cards</router-link> |
+      <router-link to="/cards/new">New card</router-link> |
+      <router-link to="/import">Import</router-link>
+    </nav>
+    <router-view class="main" />
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-import CharacterCard, { Character } from "./components/CharacterCard.vue";
-import characterData from "@/assets/characters.json";
-console.debug(characterData);
-const characters = ref<Character[]>(characterData);
-</script>
-
 <style lang="scss">
-@import "@/styles/global";
-@import "@/styles/theme";
+@import "@/styles";
 
-.cards {
-  width: min(100%, 800px);
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  overflow-x: hidden;
-  overflow-y: auto;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-  display: flex;
-  flex-direction: column;
-  gap: $gap-m;
+.app {
+  width: 100vw;
+  height: 100vh;
 
-  @media print {
-    & > *:nth-child(2n) {
-      margin-bottom: 240px;
+  font-family: $font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}
+
+nav {
+  padding: $gap-m;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
     }
   }
+}
+
+.main {
+  padding: $gap-l;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
