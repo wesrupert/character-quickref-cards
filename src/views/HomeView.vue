@@ -7,11 +7,7 @@
       </h2>
     </div>
     <div class="sample-card">
-      <CharacterCard
-        class="sample"
-        :style="{ width: `${width}%` }"
-        :character="sampleCharacter"
-      />
+      <CharacterCard :style="{ width: `${width}%` }" :card="card" />
     </div>
     <div class="inputs accent">
       <label
@@ -57,13 +53,14 @@
 </template>
 
 <script setup lang="ts">
-import CharacterCard, { Character } from "@/components/CharacterCard.vue";
+import CharacterCard from "@/components/CharacterCard.vue";
+import { Card } from "@/model/card";
 import { Routes } from "@/router";
 import { computed } from "@vue/reactivity";
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
-const sample: Required<Character> = {
+const sample: Required<Card> = {
   name: "Hally Wyrld",
   portrait: "sample-portrait.png",
   useFullscreenPortrait: false,
@@ -122,7 +119,7 @@ watch(loremDisabled, () => {
   }
 });
 
-const sampleCharacter = computed<Character>(() => ({
+const card = computed<Card>(() => ({
   name: sample.name,
   portrait: portrait.value ? sample.portrait : undefined,
   title: title.value ? sample.title : undefined,

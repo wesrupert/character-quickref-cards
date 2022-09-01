@@ -1,21 +1,17 @@
 <template>
   <div class="cards-view">
     <div class="cards">
-      <CharacterCard
-        v-for="character in characters"
-        :key="character.name"
-        :character="character"
-      />
+      <CharacterCard v-for="card in cards" :key="card.name" :card="card" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import characterData from "@/assets/characters.json";
-import CharacterCard, { Character } from "@/components/CharacterCard.vue";
-import { ref } from "vue";
+import CharacterCard from "@/components/CharacterCard.vue";
+import { useStore } from "@/store";
+import { storeToRefs } from "pinia";
 
-const characters = ref<Character[]>(characterData);
+const { cards } = storeToRefs(useStore());
 </script>
 
 <style lang="scss">

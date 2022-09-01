@@ -7,46 +7,40 @@
     }"
   >
     <div
-      v-if="props.character.portrait"
+      v-if="props.card.portrait"
       class="portrait"
-      :class="{ fullscreen: props.character.useFullscreenPortrait }"
+      :class="{ fullscreen: props.card.useFullscreenPortrait }"
       :style="{
-        'background-image': `url(${props.character.portrait})`,
+        'background-image': `url(${props.card.portrait})`,
       }"
     />
     <div v-else class="portrait quote">
-      <span v-if="props.character.quote">“{{ props.character.quote }}”</span>
+      <span v-if="props.card.quote">“{{ props.card.quote }}”</span>
     </div>
     <div class="details">
       <div class="title">
-        <h1 class="name">{{ props.character.name }}</h1>
-        <div
-          v-if="props.character.subtitle || props.character.title"
-          class="subtitle"
-        >
-          <h2 v-if="props.character.title">{{ props.character.title }}</h2>
-          <h3 v-if="props.character.subtitle">
-            {{ props.character.subtitle }}
+        <h1 class="name">{{ props.card.name }}</h1>
+        <div v-if="props.card.subtitle || props.card.title" class="subtitle">
+          <h2 v-if="props.card.title">{{ props.card.title }}</h2>
+          <h3 v-if="props.card.subtitle">
+            {{ props.card.subtitle }}
           </h3>
         </div>
       </div>
       <div class="blurbs-wrapper">
         <div class="blurbs">
-          <p v-for="block in props.character.notes" :key="block.text">
+          <p v-for="block in props.card.notes" :key="block.text">
             <span v-if="block.header" class="header">{{ block.header }}</span>
             <span>{{ block.text }}</span>
           </p>
         </div>
       </div>
-      <div
-        v-if="props.character.portrait && props.character.quote"
-        class="quote"
-      >
-        “{{ props.character.quote }}”
+      <div v-if="props.card.portrait && props.card.quote" class="quote">
+        “{{ props.card.quote }}”
       </div>
-      <div v-if="props.character.status" class="status">
+      <div v-if="props.card.status" class="status">
         <StatusBox
-          v-for="status in props.character.status"
+          v-for="status in props.card.status"
           :key="status.title"
           v-bind="status"
         />
@@ -57,26 +51,13 @@
 
 <script setup lang="ts">
 import { useElementLayout } from "@/composables/resize";
+import { Card } from "@/model/card";
 import { ref } from "vue";
 import StatusBox from "./StatusBox.vue";
 
-export interface Character {
-  name: string;
-  portrait?: string;
-  useFullscreenPortrait?: boolean;
-
-  subtitle?: string;
-  title?: string;
-
-  notes?: { header?: string; text: string }[];
-  quote?: string;
-
-  status?: { title: string; options?: string; wide?: boolean }[];
-}
-
 const root = ref<HTMLElement | null>(null);
 
-const props = defineProps<{ character: Character }>();
+const props = defineProps<{ card: Card }>();
 
 const { width } = useElementLayout(root);
 </script>
