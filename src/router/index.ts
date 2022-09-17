@@ -18,19 +18,17 @@ const routes: Array<RouteRecordRaw> = [
     path: "/cards",
     name: "cards",
     component: () => import("@/views/CardsView.vue"),
-    // TODO: Add
-    // children: [
-    //   {
-    //     path: "/new",
-    //     name: "new",
-    //     component: () => import("@/views/AddCardView.vue"),
-    //   },
-    //   {
-    //     path: "/import",
-    //     name: "import",
-    //     component: () => import("@/views/ImportCardView.vue"),
-    //   },
-    // ],
+  },
+  //   TODO: Add
+  //   {
+  //     path: "new",
+  //     name: "new",
+  //     component: () => import("@/views/AddCardView.vue"),
+  //   },
+  {
+    path: "/cards/import",
+    name: "import",
+    component: () => import("@/views/ImportView.vue"),
   },
 ];
 

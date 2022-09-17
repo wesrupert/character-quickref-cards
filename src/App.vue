@@ -6,8 +6,8 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/cards">My cards</router-link> |
-      <router-link to="/cards/new">New card</router-link> |
-      <router-link to="/import">Import</router-link>
+      <!-- TODO: <router-link to="/cards/new">New card</router-link> | -->
+      <router-link to="/cards/import">Import</router-link>
     </nav>
     <div class="main">
       <router-view />
