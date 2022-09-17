@@ -1,8 +1,6 @@
 <template>
-  <div class="cards-view">
-    <div class="cards">
-      <CharacterCard v-for="card in cards" :key="card.name" :card="card" />
-    </div>
+  <div class="print-view">
+    <CharacterCard v-for="card in cards" :key="card.name" :card="card" />
   </div>
 </template>
 
@@ -17,9 +15,22 @@ const { cards } = storeToRefs(useStore());
 <style lang="scss">
 @import "@/styles";
 
-.cards {
+.print-view {
   display: flex;
   flex-direction: column;
   gap: $gap-m;
+
+  padding: $gap-m {
+    bottom: 0;
+  }
+
+  @media print {
+    max-width: unset !important;
+    background: white;
+
+    & > *:nth-child(2n) {
+      margin-bottom: 240px;
+    }
+  }
 }
 </style>

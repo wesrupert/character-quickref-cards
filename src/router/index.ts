@@ -3,31 +3,36 @@ import HomeView from "@/views/HomeView.vue";
 
 export const Routes = {
   home: "home",
+  print: "print",
   cards: "cards",
-  add: "cards/new",
-  import: "cards/import",
+  import: "import",
 } as const;
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: Routes.home,
     component: HomeView,
   },
   {
+    path: "/print",
+    name: Routes.print,
+    component: () => import("@/views/PrintView.vue"),
+  },
+  {
     path: "/cards",
-    name: "cards",
+    name: Routes.cards,
     component: () => import("@/views/CardsView.vue"),
   },
   //   TODO: Add
   //   {
   //     path: "new",
-  //     name: "new",
+  //     name: Routes.new,
   //     component: () => import("@/views/AddCardView.vue"),
   //   },
   {
     path: "/cards/import",
-    name: "import",
+    name: Routes.import,
     component: () => import("@/views/ImportView.vue"),
   },
 ];

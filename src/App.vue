@@ -1,15 +1,20 @@
 <template>
   <div class="app" :class="{ dark: isDarkMode }">
-    <button class="theme-toggle" @click="onThemeToggleClick">
-      {{ themeToggleText }}
-    </button>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/cards">My cards</router-link> |
-      <!-- TODO: <router-link to="/cards/new">New card</router-link> | -->
-      <router-link to="/cards/import">Import</router-link>
-    </nav>
-    <div class="main">
+    <template v-if="!inPrintView">
+      <button class="theme-toggle" @click="onThemeToggleClick">
+        {{ themeToggleText }}
+      </button>
+      <nav>
+        <router-link :to="{ name: Routes.home }">Home</router-link> |
+        <router-link :to="{ name: Routes.cards }">My cards</router-link> |
+        <!-- <router-link :to="{ name: Routes.new }">New card</router-link> | -->
+        <router-link :to="{ name: Routes.import }">Import</router-link> |
+        <router-link :to="{ name: Routes.print }" target="_blank"
+          >Print</router-link
+        >
+      </nav></template
+    >
+    <div class="main" :class="{ print: inPrintView }">
       <router-view />
     </div>
   </div>
@@ -18,15 +23,30 @@
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { Routes } from "./router";
+import { STORAGE_KEY, useStore } from "./store";
+
+const store = useStore();
+const router = useRouter();
 
 const isDarkMode = ref(false);
 const themeToggleText = computed(() =>
   isDarkMode.value ? "light theme" : "dark theme"
 );
 
+const inPrintView = computed(
+  () => router.currentRoute.value.name === Routes.print
+);
+
 function onThemeToggleClick() {
   isDarkMode.value = !isDarkMode.value;
 }
+
+store.$subscribe((mutation, state) => {
+  console.debug("Saving cards...", state.cards);
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.cards));
+});
 </script>
 
 <style lang="scss">
@@ -117,8 +137,11 @@ nav {
   @include vertical-flex;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: $gap-l {
-    top: $gap-s;
+
+  &:not(.print) {
+    padding: $gap-l {
+      top: $gap-s;
+    }
   }
 
   & > * {
