@@ -123,6 +123,7 @@ h6 {
   display: flex;
   align-items: start;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 .name {
@@ -151,7 +152,7 @@ h6 {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: start;
+  justify-content: space-evenly;
 
   overflow-y: auto;
 }
@@ -172,7 +173,7 @@ h6 {
 
 .status {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: start;
   gap: $gap-l;
 }
