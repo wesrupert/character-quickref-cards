@@ -3,8 +3,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install -g vue-cli
 COPY ./ .
-RUN npm install
-RUN vue-cli-service build
+RUN NODE_ENV=development npm install && \
+  npx vue-cli-service build
 
 FROM nginx as production-stage
 RUN mkdir /app
