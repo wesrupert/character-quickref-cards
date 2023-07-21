@@ -27,3 +27,16 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Docker
+
+## Build
+
+- Clone this repository
+- Place any character portraits as desired in the public directory
+- Run `docker build . -t character-quickref-cards:latest`
+
+## Deploy
+
+- To run the container directly you can run `docker run -it --rm -p 8080:80 character-quickref-cards:latest`
+- To use docker-compose, simply use `docker-compose up`
