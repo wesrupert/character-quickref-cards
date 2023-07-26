@@ -1,4 +1,6 @@
 # Character Quick-ref Cards
+[![build](https://github.com/wesrupert/character-quickref-cards/actions/workflows/build.yml/badge.svg)](https://github.com/wesrupert/character-quickref-cards/actions/workflows/build.yml)
+
 ## Character notes: on-hand, customized, flexible, printable! 
 
 dnd-characters-quickref is a website designed for flexibly creating note cards for characters in various TTRPGs, videogames, and more. Cards are data-driven and responsive, allowing an organizer to tweak them to their preferred style.
