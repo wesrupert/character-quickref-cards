@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { getCards } from "@/model/card";
 import { useStore } from "@/store";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
@@ -21,7 +22,7 @@ const { cards } = storeToRefs(useStore());
 const input = ref(JSON.stringify(cards.value, null, 2));
 
 function onImportButtonClick() {
-  cards.value = JSON.parse(input.value);
+  cards.value = getCards(input.value);
 }
 
 function onExportButtonClick() {

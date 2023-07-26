@@ -1,12 +1,12 @@
-import { Card } from "@/model/card";
+import { type Card, getCards } from "@/model/card";
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _ from "lodash";
+import { isEqual } from "lodash-es";
 
 export const STORAGE_KEY = "cards";
 
 export const useStore = defineStore("main", () => {
-  const data = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "[]");
+  const data = getCards(window.localStorage.getItem(STORAGE_KEY));
   console.debug(`loaded ${data.length} cards`);
 
   const cards = ref<Card[]>(data);
@@ -16,7 +16,7 @@ export const useStore = defineStore("main", () => {
   }
 
   function removeCard(card: Card) {
-    cards.value = cards.value.filter((c) => !_.isEqual(c, card));
+    cards.value = cards.value.filter((c) => !isEqual(c, card));
   }
 
   return {
